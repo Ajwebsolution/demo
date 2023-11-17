@@ -65,3 +65,11 @@ function register_child_theme_menus() {
     );
 }
 add_action('after_setup_theme', 'register_child_theme_menus');
+//or otherway to call child theme css  suppose you saved css in your child theme css folder and name custom css also js inside js folder name custom.js//
+if(! defined('ABSPATH)) exit;
+	     function custom_styles(){
+       wp_enqueue_style( 'parentthemscss', get_template_directory_uri() .'/style.css');
+       wp_enqueue_style( 'child-style', get_stylesheet_uri() .'/css/custom.css');
+       wp_enqueue_script('childtheme-js',  get_stylesheet_directory_uri() .'/js/custom.js', array('jquery'), '1.4', true);
+	     }
+	add_action( 'wp_enqueue_scripts', 'custom_styles' );
